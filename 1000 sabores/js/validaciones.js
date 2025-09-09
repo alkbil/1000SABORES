@@ -31,8 +31,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Si todo está bien
     if (valido) {
-      alert("✅ Inicio de sesión exitoso (simulado). Bienvenido a 1000 Sabores!");
-      form.reset();
+      Swal.fire({
+        title: '¡Inicio de sesión exitoso!',
+        text: 'Bienvenido a 1000 Sabores',
+        icon: 'success',
+        confirmButtonText: 'Continuar'
+      }).then(() => {
+        form.reset();
+      });
     }
   });
 });
@@ -90,10 +96,61 @@ document.addEventListener("DOMContentLoaded", () => {
       confirmPasswordError.textContent = "";
     }
 
-    // Si todo está bien
+    // Si todo está bien, guardar en localStorage
     if (valido) {
-      alert("✅ Registro exitoso (simulado). Bienvenido a 1000 Sabores!");
-      form.reset();
+      // Crear objeto con los datos del usuario
+      const usuario = {
+        nombre: nombre.value.trim(),
+        email: email.value.trim(),
+        password: password.value, // En una aplicación real, esto debería estar encriptado
+        fechaRegistro: new Date().toISOString()
+      };
+
+      // Guardar en localStorage
+      try {
+        // Obtener usuarios existentes o crear un array vacío
+        const usuariosRegistrados = JSON.parse(localStorage.getItem('usuarios1000Sabores')) || [];
+        
+        // Verificar si el email ya está registrado
+        const existeUsuario = usuariosRegistrados.some(user => user.email === usuario.email);
+        
+        if (existeUsuario) {
+          emailError.textContent = "Este correo electrónico ya está registrado.";
+          return;
+        }
+        
+        // Agregar el nuevo usuario
+        usuariosRegistrados.push(usuario);
+        
+        // Guardar en localStorage
+        localStorage.setItem('usuarios1000Sabores', JSON.stringify(usuariosRegistrados));
+        
+        // Guardar también el usuario actual en sesión
+        localStorage.setItem('usuarioActual1000Sabores', JSON.stringify(usuario));
+        
+        // Mostrar alerta de éxito con SweetAlert
+        Swal.fire({
+          title: '¡Registro exitoso!',
+          text: 'Bienvenido/a a 1000 Sabores',
+          icon: 'success',
+          confirmButtonText: 'Continuar',
+          timer: 2000,
+          timerProgressBar: true
+        }).then(() => {
+          form.reset();
+          // Redirigir a la página principal después del registro
+          window.location.href = "index.html";
+        });
+        
+      } catch (error) {
+        console.error("Error al guardar en localStorage:", error);
+        Swal.fire({
+          title: 'Error',
+          text: 'Ocurrió un error durante el registro. Por favor, intenta nuevamente.',
+          icon: 'error',
+          confirmButtonText: 'Entendido'
+        });
+      }
     }
   });
 });
@@ -141,11 +198,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Resultado
     if (valido) {
-      alert("📩 Tu mensaje fue enviado (simulado). Gracias por contactarnos!");
-      form.reset();
+      Swal.fire({
+        title: '¡Mensaje enviado!',
+        text: 'Gracias por contactarnos. Te responderemos pronto.',
+        icon: 'success',
+        confirmButtonText: 'Entendido'
+      }).then(() => {
+        form.reset();
+      });
     }
   });
 });
-//////////////////////////////////////////////////////////////////////////////////////
-
 //////////////////////////////////////////////////////////////////////////////////////
