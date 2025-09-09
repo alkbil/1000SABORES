@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro - 1000 Sabores</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- CSS externo -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="logo">
+      <span>🍰</span>
+      <strong>1000 Sabores</strong>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="blogs.html">Blogs</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+    <div class="cart-login">
+      <a href="carrito.html">🛒 Cart (0)</a>
+    </div>
+  </header>
+
+
+
+  <!-- MAIN -->
+  <main class="registro">
+    <section class="formulario">
+      <div class="logo-login">
+        <img src="img/logo.png" alt="Logo 1000 Sabores">
+      </div>
+      <h2>Crear cuenta</h2>
+      <form id="registroForm">
+        <div class="campo">
+          <label for="nombre">Nombre completo:</label>
+          <input type="text" id="nombre" name="nombre" required>
+          <small class="error" id="nombreError"></small>
+        </div>
+
+        <div class="campo">
+          <label for="email">Correo electrónico:</label>
+          <input type="email" id="email" name="email" required>
+          <small class="error" id="emailError"></small>
+        </div>
+
+        <div class="campo">
+          <label for="password">Contraseña:</label>
+          <input type="password" id="password" name="password" required minlength="6">
+          <small class="error" id="passwordError"></small>
+        </div>
+
+        <div class="campo">
+          <label for="confirmPassword">Confirmar contraseña:</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" required>
+          <small class="error" id="confirmPasswordError"></small>
+        </div>
+
+        <button type="submit">Registrarse</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- FOOTER igual al index -->
+  <footer>
+    <div class="newsletter">
+      <h3>Suscríbete a nuestro boletín</h3>
+      <form>
+        <input type="email" placeholder="Ingresa tu correo">
+        <button type="submit">Suscribirse</button>
+      </form>
+    </div>
+    <p>&copy; 2025 1000 Sabores. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- JS externo -->
+  <script src="js/validaciones.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+/* ===== CARRITO ===== */
+#listaCarrito div {
+  background: var(--blanco);
+  padding: 10px;
+  border-radius: 8px;
+  margin: 10px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#vaciarCarrito {
+  background: var(--rosa);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#vaciarCarrito:hover {
+  background: var(--marron);
+}
