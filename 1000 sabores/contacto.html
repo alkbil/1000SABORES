@@ -3,19 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iniciar Sesión - 1000 Sabores</title>
+  <title>Contacto - 1000 Sabores</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
   <!-- CSS externo -->
   <link rel="stylesheet" href="css/styles.css">
-  <script src="js/main.js"></script>
-  <script src="js/auth.js"></script>
-  <script src="js/validaciones.js"></script>
   <script src="js/carrito.js"></script>
+  <script src="js/main.js"></script>
 </head>
 <body>
+    
   <!-- HEADER -->
   <header class="site-header">
     <div class="logo">
@@ -25,7 +24,7 @@
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="productos.html">Productos</a></li> 
+        <li><a href="productos.html">Productos</a></li>
         <li><a href="nosotros.html">Nosotros</a></li>
         <li><a href="blogs.html">Blogs</a></li>
         <li><a href="contacto.html">Contacto</a></li>
@@ -39,35 +38,43 @@
   <!-- MAIN -->
   <main>
     <section class="hero">
-      <h2>Bienvenido de nuevo</h2>
-      <p>Ingresa a tu cuenta para continuar disfrutando de nuestros sabores.</p>
+      <h2>Contáctanos</h2>
+      <p>¿Tienes alguna pregunta, sugerencia o encargo especial? Escríbenos y nos pondremos en contacto contigo.</p>
     </section>
 
-    <section class="formulario login">
-      <div class="logo-login">
-        <img src="img/logo.png" alt="Logo 1000 Sabores">
+    <section class="contacto">
+      <div class="formulario">
+        <form id="contactoForm">
+          <div class="campo">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <small class="error" id="nombreError"></small>
+          </div>
+
+          <div class="campo">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" required>
+            <small class="error" id="emailError"></small>
+          </div>
+
+          <div class="campo">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+            <small class="error" id="mensajeError"></small>
+          </div>
+
+          <button type="submit" class="btn">Enviar mensaje</button>
+        </form>
       </div>
 
-      <h2>Iniciar Sesión</h2>
-      <form id="loginForm">
-        <div class="campo">
-          <label for="email">Correo electrónico</label>
-          <input type="email" id="email" name="email" required>
-          <small class="error" id="emailError"></small>
-        </div>
-
-        <div class="campo">
-          <label for="password">Contraseña</label>
-          <input type="password" id="password" name="password" required>
-          <small class="error" id="passwordError"></small>
-        </div>
-
-        <button type="submit" class="btn">Ingresar</button>
-      </form>
-
-      <p class="extra-links">
-        ¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a>
-      </p>
+      <div class="info-contacto">
+        <h3>También puedes encontrarnos en:</h3>
+        <ul>
+          <li>📍 Dirección: Av. Sabores 123, Santiago</li>
+          <li>📞 Teléfono: +56 9 1234 5678</li>
+          <li>📧 Email: contacto@1000sabores.cl</li>
+        </ul>
+      </div>
     </section>
   </main>
 
