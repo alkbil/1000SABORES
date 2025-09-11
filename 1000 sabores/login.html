@@ -4,18 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Iniciar Sesión - 1000 Sabores</title>
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-
-  <!-- CSS externo -->
   <link rel="stylesheet" href="css/styles.css">
   <script src="js/main.js"></script>
-  <script src="js/auth.js"></script>
-  <script src="js/validaciones.js"></script>
   <script src="js/carrito.js"></script>
 </head>
 <body>
+    
   <!-- HEADER -->
   <header class="site-header">
     <div class="logo">
@@ -83,7 +78,55 @@
     <p>&copy; 2025 1000 Sabores. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- JS externo -->
-  <script src="js/validaciones.js"></script>
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+  <!-- JS para login -->
+  <script>
+    // Función para iniciar sesión
+    function iniciarSesion(email, password) {
+        const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+        
+        // Buscar usuario
+        const usuario = usuarios.find(user => 
+            user.email === email && user.password === password
+        );
+        
+        return usuario;
+    }
+
+    // Manejar el formulario
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        
+        const usuario = iniciarSesion(email, password);
+        
+        if (usuario) {
+            // Guardar sesión
+            localStorage.setItem('usuarioActual', JSON.stringify(usuario));
+            
+            Swal.fire({
+                title: '¡Bienvenido!',
+                text: 'Has iniciado sesión correctamente',
+                icon: 'success',
+                confirmButtonText: 'Continuar'
+            }).then(() => {
+                window.location.href = 'index.html';
+            });
+        } else {
+            Swal.fire('Error', 'Correo o contraseña incorrectos', 'error');
+        }
+    });
+
+    // Si ya está logueado, redirigir
+    window.addEventListener('DOMContentLoaded', function() {
+        if (localStorage.getItem('usuarioActual')) {
+            window.location.href = 'index.html';
+        }
+    });
+  </script>
 </body>
 </html>

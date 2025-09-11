@@ -1,4 +1,30 @@
-// carrito.js - Versión corregida (sin duplicación)
+
+function verificarLogin() {
+    if (!localStorage.getItem('usuarioActual')) {
+        Swal.fire({
+            title: 'Inicia sesión',
+            text: 'Debes iniciar sesión para ver el carrito',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Iniciar sesión',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'login.html';
+            } else {
+                window.location.href = 'productos.html';
+            }
+        });
+        return false;
+    }
+    return true;
+}
+
+// En tu función de procesar pago, añade al inicio:
+function procesarPago() {
+    if (!verificarLogin()) return;
+    // ... el resto de tu código
+}
 
 // ===== FUNCIONES BÁSICAS =====
 function obtenerCarrito() {

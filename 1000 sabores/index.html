@@ -30,6 +30,39 @@
     <div class="cart-login">
       <a href="carrito.html">🛒 Carrito (<span id="carrito-count">0</span>)</a>
     </div>
+    <!-- En el header, después del carrito -->
+    <div class="cart-login">
+      <span id="user-menu"></span>
+    </div>
+
+    <script>
+      // Mostrar opciones de usuario
+      function actualizarMenuUsuario() {
+        const userMenu = document.getElementById('user-menu');
+        const usuario = JSON.parse(localStorage.getItem('usuarioActual'));
+          
+        if (usuario) {
+            userMenu.innerHTML = `
+                <span>Hola, ${usuario.email}</span>
+                <a href="#" onclick="cerrarSesion()">Cerrar sesión</a>
+            `;
+        } else {
+             userMenu.innerHTML = `
+                <a href="login.html">Iniciar sesión</a> | 
+                <a href="registro.html">Registrarse</a>
+            `;
+        }
+      }
+
+      function cerrarSesion() {
+          localStorage.removeItem('usuarioActual');
+          actualizarMenuUsuario();
+          Swal.fire('Sesión cerrada', 'Has cerrado sesión correctamente', 'info');
+      }
+
+      // Actualizar al cargar la página
+      document.addEventListener('DOMContentLoaded', actualizarMenuUsuario);
+    </script>
   </header>
 
   <!-- LOGIN / REGISTRO -->
@@ -130,5 +163,6 @@
   </footer>
 
   <script src="js/validaciones.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

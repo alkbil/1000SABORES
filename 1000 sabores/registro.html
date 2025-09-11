@@ -4,19 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro - 1000 Sabores</title>
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-
-  <!-- SweetAlert2 CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-
-  <!-- CSS externo -->
   <link rel="stylesheet" href="css/styles.css">
-  <script src="js/carrito.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/carrito.js"></script>
 </head>
 <body>
+    
   <!-- HEADER -->
   <header class="site-header">
     <div class="logo">
@@ -38,19 +32,19 @@
   </header>
 
   <!-- MAIN -->
-  <main class="registro">
+  <main>
+    <section class="hero">
+      <h2>Crear cuenta</h2>
+      <p>Regístrate para guardar tus pedidos y recibir novedades.</p>
+    </section>
+
     <section class="formulario">
       <div class="logo-login">
         <img src="img/logo.png" alt="Logo 1000 Sabores">
       </div>
+
       <h2>Crear cuenta</h2>
       <form id="registroForm">
-        <div class="campo">
-          <label for="nombre">Nombre completo:</label>
-          <input type="text" id="nombre" name="nombre" required>
-          <small class="error" id="nombreError"></small>
-        </div>
-
         <div class="campo">
           <label for="email">Correo electrónico:</label>
           <input type="email" id="email" name="email" required>
@@ -71,10 +65,14 @@
 
         <button type="submit">Registrarse</button>
       </form>
+
+      <p class="extra-links">
+        ¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a>
+      </p>
     </section>
   </main>
 
-  <!-- FOOTER igual al index -->
+  <!-- FOOTER -->
   <footer>
     <div class="newsletter">
       <h3>Suscríbete a nuestro boletín</h3>
@@ -86,10 +84,65 @@
     <p>&copy; 2025 1000 Sabores. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- SweetAlert2 JS -->
+  <!-- SweetAlert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   
-  <!-- JS externo -->
-  <script src="js/validaciones.js"></script>
+  <!-- JS para registro -->
+  <script>
+    // Función para guardar usuario
+    function registrarUsuario(email, password) {
+        // Obtener usuarios existentes
+        const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+        
+        // Verificar si el correo ya existe
+        if (usuarios.some(user => user.email === email)) {
+            Swal.fire('Error', 'Este correo ya está registrado', 'error');
+            return false;
+        }
+        
+        // Agregar nuevo usuario
+        usuarios.push({
+            email: email,
+            password: password,
+            fechaRegistro: new Date().toISOString()
+        });
+        
+        // Guardar en localStorage
+        localStorage.setItem('usuarios', JSON.stringify(usuarios));
+        return true;
+    }
+
+    // Manejar el formulario
+    document.getElementById('registroForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        
+        // Validaciones
+        if (password !== confirmPassword) {
+            Swal.fire('Error', 'Las contraseñas no coinciden', 'error');
+            return;
+        }
+        
+        if (password.length < 6) {
+            Swal.fire('Error', 'La contraseña debe tener al menos 6 caracteres', 'error');
+            return;
+        }
+        
+        // Registrar usuario
+        if (registrarUsuario(email, password)) {
+            Swal.fire({
+                title: '¡Éxito!',
+                text: 'Cuenta creada correctamente',
+                icon: 'success',
+                confirmButtonText: 'Iniciar sesión'
+            }).then(() => {
+                window.location.href = 'login.html';
+            });
+        }
+    });
+  </script>
 </body>
 </html>
