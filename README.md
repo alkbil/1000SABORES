@@ -1,49 +1,184 @@
-# Getting Started with Create React App
+# 🍰 1000 Sabores - Pastelería Online
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Una aplicación web moderna desarrollada en React para la pastelería "1000 Sabores", featuring un catálogo de productos, sistema de carrito de compras, blog y formularios de contacto.
 
-## Available Scripts
+## 🚀 Características
 
-In the project directory, you can run:
+- ✅ **Catálogo de Productos**: Navegación intuitiva con productos organizados en categorías
+- ✅ **Carrito de Compras**: Sistema completo de carrito con localStorage
+- ✅ **Autenticación**: Sistema de login y registro de usuarios
+- ✅ **Blog**: Sección de artículos sobre repostería y consejos
+- ✅ **Formularios**: Contacto y registro con validaciones
+- ✅ **Responsive Design**: Optimizado para móvil, tablet y desktop
+- ✅ **Performance**: Build optimizado para producción
 
-### `npm start`
+## 🛠️ Tecnologías
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Frontend**: React 19.2.0 + React Router 7.9.4
+- **UI/UX**: CSS Custom + Responsive Design
+- **Notifications**: SweetAlert2 11.26.3
+- **Build Tool**: Create React App
+- **Server**: Express.js 4.21.2
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📋 Prerequisitos
 
-### `npm test`
+- Node.js 18+ 
+- npm 9+
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🔧 Instalación
 
-### `npm run build`
+```bash
+# Clonar el repositorio
+git clone [tu-repositorio]
+cd 1000-sabores-react
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Instalar dependencias
+npm install
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Iniciar en modo desarrollo
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+La aplicación estará disponible en `http://localhost:3002`
 
-### `npm run eject`
+## 📝 Scripts Disponibles
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm start          # Servidor de desarrollo
+npm run build      # Build de producción  
+npm test           # Ejecutar tests
+npm run serve      # Build + servidor de producción
+node server.js     # Solo servidor de producción
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🏗️ Build de Producción
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+# Generar build optimizado
+npm run build
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# Servir build de producción
+npm run serve
+```
 
-## Learn More
+### Métricas del Build
+- **JavaScript**: 105.09 kB (gzipped)
+- **CSS**: 4.71 kB (gzipped)
+- **Total**: ~110 kB (gzipped)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 📁 Estructura del Proyecto
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+src/
+├── components/
+│   ├── auth/           # Componentes de autenticación
+│   ├── cart/           # Componentes del carrito
+│   └── common/         # Componentes reutilizables
+├── contexts/           # Context API (Auth, Cart)
+├── hooks/              # Custom hooks
+├── pages/              # Páginas principales
+├── styles/             # CSS por componente
+└── utils/              # Utilidades y helpers
+```
+
+## 🌐 Páginas
+
+| Ruta | Descripción | Estado |
+|------|-------------|--------|
+| `/` | Página principal con productos destacados | ✅ |
+| `/productos` | Catálogo completo de productos | ✅ |
+| `/nosotros` | Historia y misión de la empresa | ✅ |
+| `/blog` | Artículos y consejos de repostería | ✅ |
+| `/contacto` | Formulario de contacto | ✅ |
+| `/carrito` | Carrito de compras | ✅ |
+| `/login` | Inicio de sesión | ✅ |
+| `/registro` | Registro de usuarios | ✅ |
+
+## 🎨 Diseño
+
+### Paleta de Colores
+```css
+--rosa: #d2691e        /* Naranja cálido */
+--crema: #f5f5dc       /* Beige claro */
+--celeste: #87ceeb     /* Azul cielo */
+--marron: #8b4513      /* Marrón chocolate */
+--blanco: #ffffff      /* Blanco puro */
+```
+
+### Tipografías
+- **Headers**: 'Quicksand', sans-serif
+- **Body**: 'Inter', sans-serif
+
+## 🛒 Funcionalidades del Carrito
+
+- Agregar/eliminar productos
+- Modificar cantidades
+- Persistencia en localStorage
+- Formulario de checkout completo
+- Validaciones de campos
+- Cálculo automático de totales
+
+## 🔐 Sistema de Autenticación
+
+- Registro con validación de email
+- Login con credenciales guardadas
+- Sesión persistente en localStorage
+- Protección de rutas del carrito
+
+## 📱 Responsive Design
+
+- **Mobile First**: Diseño optimizado para móvil
+- **Breakpoints**: 
+  - Mobile: < 768px
+  - Tablet: 768px - 1024px  
+  - Desktop: > 1024px
+
+## 🚀 Despliegue
+
+### Desarrollo Local
+```bash
+npm start  # http://localhost:3002
+```
+
+### Producción Local
+```bash
+npm run serve  # http://localhost:3000
+```
+
+### AWS EC2 (Recomendado)
+Ver documentación completa en [`BUILD.md`](./BUILD.md)
+
+## 🔄 Estado del Proyecto
+
+### ✅ Completado
+- [x] Migración completa de vanilla JS a React
+- [x] Todas las páginas funcionales
+- [x] Sistema de carrito operativo
+- [x] Formularios con validaciones
+- [x] Responsive design implementado
+- [x] Build de producción optimizado
+- [x] Servidor Express configurado
+
+### 🔄 En Desarrollo
+- [ ] Tests unitarios
+- [ ] Service Worker (PWA)
+- [ ] Optimización de imágenes
+
+### 🎯 Futuras Mejoras
+- [ ] Backend API real
+- [ ] Base de datos
+- [ ] Pasarela de pagos
+- [ ] Panel de administración
+
+## 📞 Soporte
+
+Para issues o preguntas sobre el proyecto, crear un issue en el repositorio.
+
+---
+
+**Versión**: 1.0.0  
+**Última actualización**: 26 de Octubre 2025  
+**Estado**: ✅ Production Ready
 
 ### Code Splitting
 
